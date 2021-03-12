@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Prescription Image Input</title>
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="main.css">
+    <style>
+       
+        p>img{
+            max-width:90%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Prescription Image Input</h1>
+        <h2>Capturing Media with HTML</h2>
+    </header>
+    <main>
+        <form action="#" id="myform" enctype="multipart/form-data">
+            <label for="capture">Capture Media</label>
+            
+            <input type="file" 
+            id="capture" 
+            accept="image/*" 
+            capture 
+            multiple />
+            
+            <br/>
+            <input type="button" id='script' name="Process" value="Run script" onclick="exec('python main.py');">
+		<! --	<script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+			<script>
+        function goPython(){
+            $.ajax({
+              url:"C:\Users\trupt\anaconda3\checkimage.ipynb",
+             context: document.body
+            }).done(function() {
+             alert('finished python script');;
+            });
+        }
+    </script> -->
+        </form>
+        <p><img src="" id="img" alt="from phone"/></p>
+        
+        
+    </main>    
+    <script>
+        
+        document.addEventListener('DOMContentLoaded', (ev)=>{
+            let form = document.getElementById('myform');
+            //get the captured media file
+            let input = document.getElementById('capture');
+            
+            input.addEventListener('change', (ev)=>{
+                console.dir( input.files[0] );
+                if(input.files[0].type.indexOf("image/") > -1){
+                    let img = document.getElementById('img');
+                    img.src = window.URL.createObjectURL(input.files[0]);
+                }
+               
+                
+                
+            })
+            
+        })
+    </script>
+</body>
+</html>
